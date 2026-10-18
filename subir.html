@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subir material | Banco de Apuntes</title>
+  <link rel="icon" href="img/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="subir">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero compact">
+      <div class="container">
+        <span class="kicker">Aporta a la comunidad</span>
+        <h1>Comparte algo que <span class="gradient-text">enseñe.</span></h1>
+        <p>Completa los datos del recurso. Esta demostración valida el formulario en tu navegador.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container upload-layout">
+        <div class="upload-intro">
+          <div class="upload-art">↥</div>
+          <span class="kicker">Tu aporte importa</span>
+          <h2>Un buen resumen puede cambiar una sesión de estudio.</h2>
+          <p class="muted">Describe el recurso con claridad para que otros estudiantes sepan qué encontrarán.</p>
+          <ul class="check-list">
+            <li>Usa un título fácil de reconocer.</li>
+            <li>Selecciona la materia y el tipo de recurso.</li>
+            <li>Comparte únicamente contenido que tengas derecho a distribuir.</li>
+          </ul>
+          <div class="notice-box">
+            <strong>Nota:</strong> esta versión no envía archivos a un servidor. Los datos se registran localmente como demostración.
+          </div>
+        </div>
+
+        <form id="upload-form" class="upload-form" novalidate>
+          <div class="form-heading">
+            <h2>Detalles del material</h2>
+            <p>Los campos con * son obligatorios.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="upload-title">Título del material *</label>
+              <input id="upload-title" name="title" required maxlength="80" placeholder="Ej. Guía de funciones SQL">
+              <small class="field-error" data-error-for="title"></small>
+            </div>
+            <div class="form-field">
+              <label for="upload-author">Autor o autora *</label>
+              <input id="upload-author" name="author" required maxlength="60" placeholder="Tu nombre">
+              <small class="field-error" data-error-for="author"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="upload-subject">Materia *</label>
+              <select id="upload-subject" name="subject" required>
+                <option value="">Selecciona una materia</option>
+                <option>Programación</option>
+                <option>Matemáticas</option>
+                <option>Bases de datos</option>
+                <option>Lenguaje</option>
+                <option>Otra</option>
+              </select>
+              <small class="field-error" data-error-for="subject"></small>
+            </div>
+            <div class="form-field">
+              <label for="upload-type">Tipo de recurso *</label>
+              <select id="upload-type" name="type" required>
+                <option value="">Selecciona el tipo</option>
+                <option>Apuntes</option>
+                <option>Guía</option>
+                <option>Ejercicios</option>
+                <option>Resumen</option>
+                <option>Examen pasado</option>
+              </select>
+              <small class="field-error" data-error-for="type"></small>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="upload-description">Descripción *</label>
+            <textarea id="upload-description" name="description" rows="4" maxlength="500" required placeholder="Explica brevemente qué contiene y para qué sirve..."></textarea>
+            <div class="field-bottom">
+              <small class="field-error" data-error-for="description"></small>
+              <small id="description-count">0/500</small>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="upload-file">Archivo de ejemplo (opcional)</label>
+            <input id="upload-file" name="file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt">
+            <small class="help-text">PDF, Word, PowerPoint o TXT. En esta demostración el archivo no se transmite ni se almacena.</small>
+          </div>
+
+          <label class="consent-row">
+            <input id="upload-consent" type="checkbox" required>
+            <span>Confirmo que tengo permiso para compartir este material y que no contiene información privada. *</span>
+          </label>
+          <small class="field-error" data-error-for="consent"></small>
+
+          <button class="btn btn-primary submit-button" type="submit">Validar y registrar demostración <span>↗</span></button>
+
+          <div id="upload-success" class="success-panel" role="status" hidden>
+            <span>✓</span>
+            <div>
+              <strong>¡Material registrado en esta demostración!</strong>
+              <p>La información se guardó localmente en este navegador. No se ha subido a un servidor.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
