@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subir material | Banco de Apuntes</title>
+  <link rel="icon" href="img/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="subir">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero compact">
+      <div class="container">
+        <span class="kicker">Aporta a la comunidad</span>
+        <h1>Comparte algo que <span class="gradient-text">enseñe.</span></h1>
+        <p>Completa los datos del recurso. Necesitas una cuenta para publicar. Puedes editar tus aportes después desde Mi panel.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container upload-layout">
+        <div class="upload-intro">
+          <div class="upload-art">↥</div>
+          <span class="kicker">Tu aporte importa</span>
+          <h2>Un buen resumen puede cambiar una sesión de estudio.</h2>
+          <p class="muted">Describe el recurso con claridad para que otros estudiantes sepan qué encontrarán.</p>
+          <ul class="check-list">
+            <li>Usa un título fácil de reconocer.</li>
+            <li>Selecciona la materia y el tipo de recurso.</li>
+            <li>Comparte únicamente contenido que tengas derecho a distribuir.</li>
+          </ul>
+          <div class="notice-box"><strong>Recuerda:</strong> tu material será visible para toda la comunidad en la biblioteca.</div>
+        </div>
+
+        <form id="upload-form" class="upload-form" novalidate>
+          <div class="form-heading">
+            <h2 id="form-title">Detalles del material</h2>
+            <p>Los campos con * son obligatorios.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="upload-title">Título del material *</label>
+              <input id="upload-title" name="title" required maxlength="80" placeholder="Ej. Guía de funciones SQL">
+              <small class="field-error" data-error-for="title"></small>
+            </div>
+            <div class="form-field">
+              <label for="upload-author">Autor o autora</label>
+              <input id="upload-author" name="author" maxlength="60" readonly>
+              <small class="field-error" data-error-for="author"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="upload-subject">Materia *</label>
+              <select id="upload-subject" name="subject" required>
+                <option value="">Selecciona una materia</option>
+                <option value="prog">Programación</option>
+                <option value="mate">Matemáticas</option>
+                <option value="bd">Bases de datos</option>
+                <option value="lengua">Lenguaje</option>
+              </select>
+              <small class="field-error" data-error-for="subject"></small>
+            </div>
+            <div class="form-field">
+              <label for="upload-type">Tipo de recurso *</label>
+              <select id="upload-type" name="type" required>
+                <option value="">Selecciona el tipo</option>
+                <option value="apuntes">Apuntes</option>
+                <option value="guia">Guía</option>
+                <option value="ejercicio">Ejercicios</option>
+                <option value="resumen">Resumen</option>
+                <option value="examen">Examen pasado</option>
+              </select>
+              <small class="field-error" data-error-for="type"></small>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="upload-description">Descripción *</label>
+            <textarea id="upload-description" name="description" rows="4" maxlength="500" required placeholder="Explica brevemente qué contiene y para qué sirve..."></textarea>
+            <div class="field-bottom">
+              <small class="field-error" data-error-for="description"></small>
+              <small id="description-count">0/500</small>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="upload-tags">Etiquetas (separadas por coma)</label>
+            <input id="upload-tags" name="tags" maxlength="100" placeholder="Ej. SQL, consultas, práctica">
+          </div>
+          <div class="form-field">
+            <label for="upload-content">Contenido del material</label>
+            <textarea id="upload-content" name="content" rows="7" maxlength="5000" placeholder="Escribe o pega aquí el contenido del apunte..."></textarea>
+          </div>
+          <label class="consent-row">
+            <input id="upload-consent" type="checkbox" required>
+            <span>Confirmo que tengo permiso para compartir este material y que no contiene información privada. *</span>
+          </label>
+          <small class="field-error" data-error-for="consent"></small>
+
+          <button class="btn btn-primary submit-button" type="submit">Guardar material <span>↗</span></button>
+
+          <div id="upload-success" class="success-panel" role="status" hidden>
+            <span>✓</span>
+            <div><strong>¡Material guardado!</strong>
+              <p>Ya aparece en la biblioteca. <a class="text-link" href="panel.html">Ir a Mi panel →</a></p></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

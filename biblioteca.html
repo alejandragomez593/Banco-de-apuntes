@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca | Banco de Apuntes</title>
+  <link rel="icon" href="img/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="biblioteca">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero compact">
+      <div class="container">
+        <span class="kicker">Tu espacio de estudio</span>
+        <h1>Biblioteca de <span class="gradient-text">recursos.</span></h1>
+        <p>Busca, combina filtros y guarda los materiales que quieras consultar después.</p>
+        <div class="breadcrumb">
+        </div>
+      </div>
+    </section>
+
+    <section class="section library-section">
+      <div class="container">
+        <div class="library-toolbar">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="resource-search" type="search" placeholder="Buscar título, tema, autor..." aria-label="Buscar recursos">
+            <kbd>⌘ K</kbd>
+          </label>
+          <a href="subir.html" class="btn btn-primary">＋ Subir material</a>
+        </div>
+
+        <div class="filter-panel">
+          <div class="filter-group">
+            <label for="subject-filter">Materia</label>
+            <select id="subject-filter">
+              <option value="all">Todas las materias</option>
+              <option value="prog">Programación</option>
+              <option value="mate">Matemáticas</option>
+              <option value="bd">Bases de datos</option>
+              <option value="lengua">Lenguaje</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="type-filter">Tipo de recurso</label>
+            <select id="type-filter">
+              <option value="all">Todos los tipos</option>
+              <option value="guia">Guías</option>
+              <option value="ejercicio">Ejercicios</option>
+              <option value="resumen">Resúmenes</option>
+              <option value="examen">Exámenes pasados</option>
+              <option value="apuntes">Apuntes</option>
+            </select>
+          </div>
+
+          <label class="favorites-toggle">
+            <input id="favorites-only" type="checkbox">
+            <span>☆</span> Solo favoritos
+          </label>
+
+          <button class="btn btn-secondary btn-small" id="clear-filters" type="button">
+            Limpiar filtros
+          </button>
+        </div>
+
+        <div class="results-line">
+          <span id="results-count">6 recursos</span>
+          <span class="demo-label">Contenido de demostración</span>
+        </div>
+
+        <div class="resource-grid" id="resource-grid">
+          <article class="resource-card"
+            data-id="html-basico"
+            data-subject="prog"
+            data-type="apuntes"
+            data-title="Apuntes de HTML"
+            data-description="Estructura de una página, etiquetas semánticas, enlaces, imágenes y buenas prácticas para empezar a construir sitios web."
+            data-author="Equipo Banco de Apuntes"
+            data-date="16 de octubre de 2026"
+            data-tags="HTML, etiquetas, web"
+            data-file="materiales/apuntes-html.txt">
+
+            <div class="resource-cover cover-purple">
+              <span class="cover-symbol">&lt;/&gt;</span>
+              <span class="cover-label">PROGRAMACIÓN</span>
+              <span class="cover-bottom">01 / WEB</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">📝 Apuntes</span>
+                <button class="favorite-button" aria-label="Guardar Apuntes de HTML" aria-pressed="false">☆</button>
+              </div>
+              <h3>Apuntes de HTML</h3>
+              <p>Estructura de una página y etiquetas esenciales.</p>
+              <div class="resource-footer">
+                <span>⏱ 8 min de lectura</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card"
+            data-id="laravel-guia"
+            data-subject="prog"
+            data-type="guia"
+            data-title="Guía de Laravel"
+            data-description="Introducción a rutas, controladores, modelos y migraciones. Incluye una ruta de aprendizaje para practicar los conceptos."
+            data-author="Biblioteca de ejemplo"
+            data-date="12 de octubre de 2026"
+            data-tags="Laravel, PHP, desarrollo"
+            data-file="materiales/guia-laravel.txt">
+
+            <div class="resource-cover cover-blue">
+              <span class="cover-symbol">L.</span>
+              <span class="cover-label">PROGRAMACIÓN</span>
+              <span class="cover-bottom">02 / PHP</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">📘 Guía</span>
+                <button class="favorite-button" aria-label="Guardar Guía de Laravel" aria-pressed="false">☆</button>
+              </div>
+              <h3>Guía de Laravel</h3>
+              <p>Rutas, controladores y migraciones paso a paso.</p>
+              <div class="resource-footer">
+                <span>⏱ 12 min de lectura</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card"
+            data-id="sql-ejercicios"
+            data-subject="bd"
+            data-type="ejercicio"
+            data-title="Ejercicios SQL"
+            data-description="Practica SELECT, WHERE, ORDER BY, funciones de agregado y JOIN con ejemplos de consultas para una base de datos escolar."
+            data-author="Equipo Banco de Apuntes"
+            data-date="10 de octubre de 2026"
+            data-tags="SQL, JOIN, consultas"
+            data-file="materiales/ejercicios-sql.txt">
+
+            <div class="resource-cover cover-pink">
+              <span class="cover-symbol">DB</span>
+              <span class="cover-label">BASES DE DATOS</span>
+              <span class="cover-bottom">03 / SQL</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">🧩 Ejercicios</span>
+                <button class="favorite-button" aria-label="Guardar Ejercicios SQL" aria-pressed="false">☆</button>
+              </div>
+              <h3>Ejercicios SQL</h3>
+              <p>Consultas, funciones y relaciones entre tablas.</p>
+              <div class="resource-footer">
+                <span>⏱ 15 min de práctica</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card"
+            data-id="formulas-mate"
+            data-subject="mate"
+            data-type="resumen"
+            data-title="Fórmulas esenciales de matemáticas"
+            data-description="Resumen de fórmulas de álgebra, geometría y trigonometría. Revisa las expresiones principales y practica identificando cuándo utilizarlas."
+            data-author="Biblioteca de ejemplo"
+            data-date="8 de octubre de 2026"
+            data-tags="álgebra, geometría, fórmulas"
+            data-file="materiales/formulas-matematicas.txt">
+
+            <div class="resource-cover cover-orange">
+              <span class="cover-symbol">∑</span>
+              <span class="cover-label">MATEMÁTICAS</span>
+              <span class="cover-bottom">04 / FÓRMULAS</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">✦ Resumen</span>
+                <button class="favorite-button" aria-label="Guardar Fórmulas esenciales de matemáticas" aria-pressed="false">☆</button>
+              </div>
+              <h3>Fórmulas esenciales</h3>
+              <p>Álgebra, geometría y trigonometría en resumen.</p>
+              <div class="resource-footer">
+                <span>⏱ 6 min de lectura</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card"
+            data-id="lenguaje-resumen"
+            data-subject="lengua"
+            data-type="resumen"
+            data-title="Resumen de comprensión lectora"
+            data-description="Ideas principales, inferencias, propósito del autor y estrategias para responder preguntas de comprensión lectora."
+            data-author="Equipo Banco de Apuntes"
+            data-date="5 de octubre de 2026"
+            data-tags="lectura, lenguaje, comprensión"
+            data-file="materiales/comprension-lectora.txt">
+
+            <div class="resource-cover cover-green">
+              <span class="cover-symbol">Aa</span>
+              <span class="cover-label">LENGUAJE</span>
+              <span class="cover-bottom">05 / LECTURA</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">✦ Resumen</span>
+                <button class="favorite-button" aria-label="Guardar Resumen de comprensión lectora" aria-pressed="false">☆</button>
+              </div>
+              <h3>Comprensión lectora</h3>
+              <p>Estrategias para analizar textos y reconocer ideas.</p>
+              <div class="resource-footer">
+                <span>⏱ 7 min de lectura</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="resource-card"
+            data-id="repaso-mate"
+            data-subject="mate"
+            data-type="examen"
+            data-title="Repaso de matemáticas"
+            data-description="Preguntas de práctica para repasar operaciones algebraicas, ecuaciones y conceptos de geometría antes de una evaluación."
+            data-author="Material de práctica"
+            data-date="2 de octubre de 2026"
+            data-tags="repaso, examen, práctica"
+            data-file="materiales/repaso-matematicas.txt">
+
+            <div class="resource-cover cover-lilac">
+              <span class="cover-symbol">π</span>
+              <span class="cover-label">MATEMÁTICAS</span>
+              <span class="cover-bottom">06 / REPASO</span>
+            </div>
+            <div class="resource-content">
+              <div class="resource-meta">
+                <span class="type-pill">✎ Examen de práctica</span>
+                <button class="favorite-button" aria-label="Guardar Repaso de matemáticas" aria-pressed="false">☆</button>
+              </div>
+              <h3>Repaso de matemáticas</h3>
+              <p>Preguntas de práctica para preparar una evaluación.</p>
+              <div class="resource-footer">
+                <span>⏱ 20 min de práctica</span>
+                <button class="text-link preview-button" type="button">Ver recurso ↗</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 07. CSS -->
+<article class="resource-card"
+  data-id="css-basico" data-subject="prog" data-type="apuntes"
+  data-title="Fundamentos de CSS"
+  data-description="Selectores, colores, márgenes, espaciado y diseño adaptable."
+  data-author="Equipo Banco de Apuntes" data-date="17 de octubre de 2026"
+  data-tags="CSS, estilos, diseño web">
+  <div class="resource-cover cover-purple">
+    <span class="cover-symbol">#</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">07 / CSS</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📝 Apuntes</span><button class="favorite-button" aria-label="Guardar Fundamentos de CSS" aria-pressed="false">☆</button></div>
+    <h3>Fundamentos de CSS</h3><p>Estilos, colores y diseño adaptable para páginas web.</p>
+    <div class="resource-footer"><span>⏱ 10 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 08. JavaScript -->
+<article class="resource-card"
+  data-id="javascript-fundamentos" data-subject="prog" data-type="guia"
+  data-title="Guía de JavaScript"
+  data-description="Variables, funciones, condicionales, eventos y manipulación del DOM."
+  data-author="Biblioteca de ejemplo" data-date="17 de octubre de 2026"
+  data-tags="JavaScript, funciones, DOM">
+  <div class="resource-cover cover-blue">
+    <span class="cover-symbol">JS</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">08 / JS</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Guía de JavaScript" aria-pressed="false">☆</button></div>
+    <h3>Guía de JavaScript</h3><p>Aprende lógica, funciones e interactividad web.</p>
+    <div class="resource-footer"><span>⏱ 14 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 09. Python -->
+<article class="resource-card"
+  data-id="python-intro" data-subject="prog" data-type="guia"
+  data-title="Introducción a Python"
+  data-description="Sintaxis básica, variables, listas, ciclos y funciones con ejemplos."
+  data-author="Equipo Banco de Apuntes" data-date="16 de octubre de 2026"
+  data-tags="Python, variables, programación">
+  <div class="resource-cover cover-green">
+    <span class="cover-symbol">Py</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">09 / PYTHON</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Introducción a Python" aria-pressed="false">☆</button></div>
+    <h3>Introducción a Python</h3><p>Primeros pasos para crear programas sencillos.</p>
+    <div class="resource-footer"><span>⏱ 12 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 10. PHP -->
+<article class="resource-card"
+  data-id="php-basico" data-subject="prog" data-type="apuntes"
+  data-title="PHP desde cero"
+  data-description="Variables, arreglos, funciones y formularios del lado del servidor."
+  data-author="Biblioteca de ejemplo" data-date="15 de octubre de 2026"
+  data-tags="PHP, servidor, variables">
+  <div class="resource-cover cover-lilac">
+    <span class="cover-symbol">PHP</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">10 / PHP</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📝 Apuntes</span><button class="favorite-button" aria-label="Guardar PHP desde cero" aria-pressed="false">☆</button></div>
+    <h3>PHP desde cero</h3><p>Conceptos esenciales para desarrollar sitios dinámicos.</p>
+    <div class="resource-footer"><span>⏱ 11 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 11. Algoritmos -->
+<article class="resource-card"
+  data-id="algoritmos" data-subject="prog" data-type="ejercicio"
+  data-title="Ejercicios de algoritmos"
+  data-description="Problemas de lógica con condiciones, ciclos y pseudocódigo."
+  data-author="Equipo Banco de Apuntes" data-date="14 de octubre de 2026"
+  data-tags="algoritmos, lógica, pseudocódigo">
+  <div class="resource-cover cover-orange">
+    <span class="cover-symbol">{ }</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">11 / LÓGICA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Ejercicios de algoritmos" aria-pressed="false">☆</button></div>
+    <h3>Ejercicios de algoritmos</h3><p>Practica la resolución de problemas paso a paso.</p>
+    <div class="resource-footer"><span>⏱ 20 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 12. POO -->
+<article class="resource-card"
+  data-id="poo" data-subject="prog" data-type="resumen"
+  data-title="Programación orientada a objetos"
+  data-description="Clases, objetos, atributos, métodos, herencia y encapsulamiento."
+  data-author="Biblioteca de ejemplo" data-date="13 de octubre de 2026"
+  data-tags="POO, clases, objetos">
+  <div class="resource-cover cover-pink">
+    <span class="cover-symbol">OOP</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">12 / POO</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">✦ Resumen</span><button class="favorite-button" aria-label="Guardar Programación orientada a objetos" aria-pressed="false">☆</button></div>
+    <h3>Programación orientada a objetos</h3><p>Un resumen de clases, objetos y sus relaciones.</p>
+    <div class="resource-footer"><span>⏱ 8 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 13. Git -->
+<article class="resource-card"
+  data-id="git-github" data-subject="prog" data-type="guia"
+  data-title="Guía práctica de Git y GitHub"
+  data-description="Repositorios, commits, ramas y trabajo colaborativo."
+  data-author="Equipo Banco de Apuntes" data-date="12 de octubre de 2026"
+  data-tags="Git, GitHub, repositorios">
+  <div class="resource-cover cover-blue">
+    <span class="cover-symbol">Git</span><span class="cover-label">PROGRAMACIÓN</span><span class="cover-bottom">13 / CONTROL DE VERSIONES</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Guía práctica de Git y GitHub" aria-pressed="false">☆</button></div>
+    <h3>Guía de Git y GitHub</h3><p>Organiza tus proyectos y guarda sus versiones.</p>
+    <div class="resource-footer"><span>⏱ 13 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 14. Redes -->
+<article class="resource-card"
+  data-id="redes-computadoras" data-subject="prog" data-type="resumen"
+  data-title="Fundamentos de redes"
+  data-description="Direcciones IP, DNS, routers, protocolos y modelos de comunicación."
+  data-author="Biblioteca de ejemplo" data-date="11 de octubre de 2026"
+  data-tags="redes, IP, DNS">
+  <div class="resource-cover cover-green">
+    <span class="cover-symbol">NET</span><span class="cover-label">TECNOLOGÍA</span><span class="cover-bottom">14 / REDES</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">✦ Resumen</span><button class="favorite-button" aria-label="Guardar Fundamentos de redes" aria-pressed="false">☆</button></div>
+    <h3>Fundamentos de redes</h3><p>Conceptos básicos para entender cómo se conectan los equipos.</p>
+    <div class="resource-footer"><span>⏱ 9 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 15. Seguridad web -->
+<article class="resource-card"
+  data-id="seguridad-web" data-subject="prog" data-type="guia"
+  data-title="Introducción a la seguridad web"
+  data-description="Contraseñas seguras, validación de entradas, HTTPS y prácticas preventivas."
+  data-author="Equipo Banco de Apuntes" data-date="10 de octubre de 2026"
+  data-tags="seguridad, HTTPS, validación">
+  <div class="resource-cover cover-purple">
+    <span class="cover-symbol">🔒</span><span class="cover-label">TECNOLOGÍA</span><span class="cover-bottom">15 / SEGURIDAD</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Introducción a la seguridad web" aria-pressed="false">☆</button></div>
+    <h3>Seguridad web</h3><p>Buenas prácticas para proteger aplicaciones y usuarios.</p>
+    <div class="resource-footer"><span>⏱ 12 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 16. Modelo de datos -->
+<article class="resource-card"
+  data-id="modelado-bd" data-subject="bd" data-type="guia"
+  data-title="Introducción al modelado de datos"
+  data-description="Entidades, atributos, relaciones y claves para diseñar bases de datos."
+  data-author="Equipo Banco de Apuntes" data-date="9 de octubre de 2026"
+  data-tags="bases de datos, entidades, relaciones">
+  <div class="resource-cover cover-pink">
+    <span class="cover-symbol">ER</span><span class="cover-label">BASES DE DATOS</span><span class="cover-bottom">16 / MODELO ER</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Introducción al modelado de datos" aria-pressed="false">☆</button></div>
+    <h3>Modelado de datos</h3><p>Diseña la estructura de una base de datos.</p>
+    <div class="resource-footer"><span>⏱ 12 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 17. Normalización -->
+<article class="resource-card"
+  data-id="normalizacion-bd" data-subject="bd" data-type="resumen"
+  data-title="Normalización de bases de datos"
+  data-description="Dependencias funcionales y formas normales para organizar la información."
+  data-author="Biblioteca de ejemplo" data-date="8 de octubre de 2026"
+  data-tags="normalización, tablas, datos">
+  <div class="resource-cover cover-lilac">
+    <span class="cover-symbol">1NF</span><span class="cover-label">BASES DE DATOS</span><span class="cover-bottom">17 / NORMALIZACIÓN</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">✦ Resumen</span><button class="favorite-button" aria-label="Guardar Normalización de bases de datos" aria-pressed="false">☆</button></div>
+    <h3>Normalización de bases de datos</h3><p>Reduce duplicados y mejora la organización de los datos.</p>
+    <div class="resource-footer"><span>⏱ 8 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 18. MySQL -->
+<article class="resource-card"
+  data-id="mysql-practica" data-subject="bd" data-type="ejercicio"
+  data-title="Prácticas de MySQL"
+  data-description="Creación de tablas, inserción de registros y consultas sencillas."
+  data-author="Equipo Banco de Apuntes" data-date="7 de octubre de 2026"
+  data-tags="MySQL, SQL, tablas">
+  <div class="resource-cover cover-blue">
+    <span class="cover-symbol">SQL</span><span class="cover-label">BASES DE DATOS</span><span class="cover-bottom">18 / MYSQL</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Prácticas de MySQL" aria-pressed="false">☆</button></div>
+    <h3>Prácticas de MySQL</h3><p>Ejercicios para crear tablas y consultar información.</p>
+    <div class="resource-footer"><span>⏱ 18 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 19. Consultas avanzadas -->
+<article class="resource-card"
+  data-id="consultas-avanzadas" data-subject="bd" data-type="ejercicio"
+  data-title="Consultas SQL avanzadas"
+  data-description="Práctica de JOIN, GROUP BY, HAVING y subconsultas."
+  data-author="Biblioteca de ejemplo" data-date="6 de octubre de 2026"
+  data-tags="SQL, JOIN, GROUP BY">
+  <div class="resource-cover cover-orange">
+    <span class="cover-symbol">Σ</span><span class="cover-label">BASES DE DATOS</span><span class="cover-bottom">19 / CONSULTAS</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Consultas SQL avanzadas" aria-pressed="false">☆</button></div>
+    <h3>Consultas SQL avanzadas</h3><p>Resuelve consultas usando agrupaciones y relaciones.</p>
+    <div class="resource-footer"><span>⏱ 20 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 20. Diagrama ER -->
+<article class="resource-card"
+  data-id="diseno-er" data-subject="bd" data-type="apuntes"
+  data-title="Diseño de diagramas entidad-relación"
+  data-description="Representación visual de entidades, atributos, cardinalidades y relaciones."
+  data-author="Equipo Banco de Apuntes" data-date="5 de octubre de 2026"
+  data-tags="diagrama ER, entidades, cardinalidad">
+  <div class="resource-cover cover-green">
+    <span class="cover-symbol">◇</span><span class="cover-label">BASES DE DATOS</span><span class="cover-bottom">20 / DIAGRAMAS</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📝 Apuntes</span><button class="favorite-button" aria-label="Guardar Diseño de diagramas entidad-relación" aria-pressed="false">☆</button></div>
+    <h3>Diagramas entidad-relación</h3><p>Representa gráficamente cómo se relacionan los datos.</p>
+    <div class="resource-footer"><span>⏱ 10 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 21. Estadística -->
+<article class="resource-card"
+  data-id="estadistica" data-subject="mate" data-type="guia"
+  data-title="Guía básica de estadística"
+  data-description="Media, mediana, moda, rango y lectura de tablas de frecuencia."
+  data-author="Biblioteca de ejemplo" data-date="4 de octubre de 2026"
+  data-tags="estadística, media, mediana">
+  <div class="resource-cover cover-orange">
+    <span class="cover-symbol">x̄</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">21 / ESTADÍSTICA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Guía básica de estadística" aria-pressed="false">☆</button></div>
+    <h3>Guía básica de estadística</h3><p>Aprende a resumir y analizar conjuntos de datos.</p>
+    <div class="resource-footer"><span>⏱ 12 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 22. Ecuaciones -->
+<article class="resource-card"
+  data-id="ecuaciones" data-subject="mate" data-type="ejercicio"
+  data-title="Ejercicios de ecuaciones"
+  data-description="Ecuaciones lineales, despeje de variables y comprobación de resultados."
+  data-author="Equipo Banco de Apuntes" data-date="3 de octubre de 2026"
+  data-tags="álgebra, ecuaciones, variables">
+  <div class="resource-cover cover-purple">
+    <span class="cover-symbol">x=?</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">22 / ÁLGEBRA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Ejercicios de ecuaciones" aria-pressed="false">☆</button></div>
+    <h3>Ejercicios de ecuaciones</h3><p>Practica despejes y comprueba tus respuestas.</p>
+    <div class="resource-footer"><span>⏱ 15 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 23. Geometría -->
+<article class="resource-card"
+  data-id="geometria" data-subject="mate" data-type="resumen"
+  data-title="Resumen de geometría"
+  data-description="Perímetros, áreas, triángulos, cuadriláteros y circunferencias."
+  data-author="Biblioteca de ejemplo" data-date="2 de octubre de 2026"
+  data-tags="geometría, áreas, perímetros">
+  <div class="resource-cover cover-pink">
+    <span class="cover-symbol">△</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">23 / GEOMETRÍA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">✦ Resumen</span><button class="favorite-button" aria-label="Guardar Resumen de geometría" aria-pressed="false">☆</button></div>
+    <h3>Resumen de geometría</h3><p>Figuras, fórmulas y propiedades principales.</p>
+    <div class="resource-footer"><span>⏱ 8 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 24. Trigonometría -->
+<article class="resource-card"
+  data-id="trigonometria" data-subject="mate" data-type="apuntes"
+  data-title="Apuntes de trigonometría"
+  data-description="Seno, coseno, tangente y relaciones en triángulos rectángulos."
+  data-author="Equipo Banco de Apuntes" data-date="1 de octubre de 2026"
+  data-tags="trigonometría, seno, coseno">
+  <div class="resource-cover cover-blue">
+    <span class="cover-symbol">sin</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">24 / TRIGONOMETRÍA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📝 Apuntes</span><button class="favorite-button" aria-label="Guardar Apuntes de trigonometría" aria-pressed="false">☆</button></div>
+    <h3>Apuntes de trigonometría</h3><p>Relaciones trigonométricas y ejemplos básicos.</p>
+    <div class="resource-footer"><span>⏱ 10 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 25. Funciones matemáticas -->
+<article class="resource-card"
+  data-id="funciones-mate" data-subject="mate" data-type="ejercicio"
+  data-title="Práctica de funciones matemáticas"
+  data-description="Dominio, rango, evaluación y representación de funciones."
+  data-author="Biblioteca de ejemplo" data-date="30 de septiembre de 2026"
+  data-tags="funciones, dominio, rango">
+  <div class="resource-cover cover-lilac">
+    <span class="cover-symbol">f(x)</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">25 / FUNCIONES</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Práctica de funciones matemáticas" aria-pressed="false">☆</button></div>
+    <h3>Práctica de funciones</h3><p>Evalúa funciones y reconoce sus características.</p>
+    <div class="resource-footer"><span>⏱ 18 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 26. Probabilidad -->
+<article class="resource-card"
+  data-id="probabilidad" data-subject="mate" data-type="guia"
+  data-title="Introducción a la probabilidad"
+  data-description="Experimentos aleatorios, eventos, espacio muestral y probabilidad simple."
+  data-author="Equipo Banco de Apuntes" data-date="29 de septiembre de 2026"
+  data-tags="probabilidad, eventos, estadística">
+  <div class="resource-cover cover-green">
+    <span class="cover-symbol">P(A)</span><span class="cover-label">MATEMÁTICAS</span><span class="cover-bottom">26 / PROBABILIDAD</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Introducción a la probabilidad" aria-pressed="false">☆</button></div>
+    <h3>Introducción a la probabilidad</h3><p>Calcula posibilidades con ejemplos cotidianos.</p>
+    <div class="resource-footer"><span>⏱ 11 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 27. Ortografía -->
+<article class="resource-card"
+  data-id="ortografia" data-subject="lengua" data-type="resumen"
+  data-title="Reglas básicas de ortografía"
+  data-description="Acentuación, uso de mayúsculas, signos de puntuación y errores frecuentes."
+  data-author="Biblioteca de ejemplo" data-date="28 de septiembre de 2026"
+  data-tags="ortografía, acentuación, escritura">
+  <div class="resource-cover cover-orange">
+    <span class="cover-symbol">á</span><span class="cover-label">LENGUAJE</span><span class="cover-bottom">27 / ORTOGRAFÍA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">✦ Resumen</span><button class="favorite-button" aria-label="Guardar Reglas básicas de ortografía" aria-pressed="false">☆</button></div>
+    <h3>Reglas de ortografía</h3><p>Repasa acentos, puntuación y escritura correcta.</p>
+    <div class="resource-footer"><span>⏱ 8 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 28. Redacción -->
+<article class="resource-card"
+  data-id="redaccion" data-subject="lengua" data-type="guia"
+  data-title="Guía para redactar textos"
+  data-description="Planificación, introducción, desarrollo, conclusión y revisión de textos."
+  data-author="Equipo Banco de Apuntes" data-date="27 de septiembre de 2026"
+  data-tags="redacción, párrafos, escritura">
+  <div class="resource-cover cover-blue">
+    <span class="cover-symbol">Aa</span><span class="cover-label">LENGUAJE</span><span class="cover-bottom">28 / REDACCIÓN</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📘 Guía</span><button class="favorite-button" aria-label="Guardar Guía para redactar textos" aria-pressed="false">☆</button></div>
+    <h3>Guía para redactar textos</h3><p>Organiza ideas y escribe con mayor claridad.</p>
+    <div class="resource-footer"><span>⏱ 12 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 29. Literatura -->
+<article class="resource-card"
+  data-id="generos-literarios" data-subject="lengua" data-type="apuntes"
+  data-title="Géneros literarios"
+  data-description="Características de los géneros narrativo, lírico y dramático."
+  data-author="Biblioteca de ejemplo" data-date="26 de septiembre de 2026"
+  data-tags="literatura, narrativa, poesía, teatro">
+  <div class="resource-cover cover-purple">
+    <span class="cover-symbol">¶</span><span class="cover-label">LENGUAJE</span><span class="cover-bottom">29 / LITERATURA</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">📝 Apuntes</span><button class="favorite-button" aria-label="Guardar Géneros literarios" aria-pressed="false">☆</button></div>
+    <h3>Géneros literarios</h3><p>Reconoce los tipos de textos y sus características.</p>
+    <div class="resource-footer"><span>⏱ 9 min de lectura</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+
+<!-- 30. Argumentación -->
+<article class="resource-card"
+  data-id="argumentacion" data-subject="lengua" data-type="ejercicio"
+  data-title="Ejercicios de argumentación"
+  data-description="Tesis, argumentos, evidencias, contraargumentos y conclusión."
+  data-author="Equipo Banco de Apuntes" data-date="25 de septiembre de 2026"
+  data-tags="argumentación, tesis, debate">
+  <div class="resource-cover cover-pink">
+    <span class="cover-symbol">“ ”</span><span class="cover-label">LENGUAJE</span><span class="cover-bottom">30 / ARGUMENTACIÓN</span>
+  </div>
+  <div class="resource-content">
+    <div class="resource-meta"><span class="type-pill">🧩 Ejercicios</span><button class="favorite-button" aria-label="Guardar Ejercicios de argumentación" aria-pressed="false">☆</button></div>
+    <h3>Ejercicios de argumentación</h3><p>Aprende a construir argumentos claros y convincentes.</p>
+    <div class="resource-footer"><span>⏱ 15 min de práctica</span><button class="text-link preview-button" type="button">Ver recurso ↗</button></div>
+  </div>
+</article>
+        </div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <div class="empty-icon">⌕</div>
+          <h3>No se encontraron resultados</h3>
+          <p>Prueba con otra palabra o elimina alguno de los filtros.</p>
+          <button class="btn btn-secondary" id="empty-clear" type="button">Mostrar todos los recursos</button>
+        </div>
+
+        <div class="library-note">
+          <span>✦</span>
+          <p>Estos materiales son ejemplos de demostración. Los favoritos se guardan en el navegador que estás utilizando.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="resource-modal" aria-hidden="true">
+    <section class="resource-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" aria-label="Cerrar vista previa">×</button>
+      <div class="modal-cover" id="modal-cover"><span>RECURSO DE ESTUDIO</span></div>
+      <div class="modal-body">
+        <span class="kicker">Vista previa del material</span>
+        <h2 id="modal-title">Título del recurso</h2>
+        <p id="modal-description"></p>
+        <div class="modal-meta">
+          <span id="modal-author"></span>
+          <span id="modal-date"></span>
+        </div>
+        <div class="tag-list" id="modal-tags"></div>
+        <div class="preview-text" id="modal-preview-text"></div>
+        <div class="button-row">
+          <a class="btn btn-primary" id="modal-download" href="#" download>Descargar recurso ↓</a>
+          <button class="btn btn-secondary" id="modal-close-bottom" type="button">Cerrar</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="js/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>

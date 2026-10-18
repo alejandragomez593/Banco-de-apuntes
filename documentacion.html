@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentación | Banco de Apuntes</title>
+  <link rel="icon" href="img/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="documentacion">
+  <div id="site-header"></div>
+  <main>
+    <section class="page-hero compact"><div class="container">
+      <span class="kicker">Documentación del proyecto</span>
+      <h1>Documentación <span class="gradient-text">técnica y emprendedora.</span></h1>
+      <p>Proyecto Final · Módulo 3.8 · 3-1 Desarrollo de Software · INFRAMEN.</p></div></section>
+    <section class="section"><div class="container narrow doc-body">
+
+      <h2>1. Descripción general</h2>
+      <p><strong>Banco de Apuntes</strong> es una aplicación web para compartir, buscar y gestionar materiales de estudio de bachillerato. Resuelve la dispersión de apuntes en chats y carpetas personales con una biblioteca organizada, con autoría y búsqueda. El análisis de mercado, competidores y marketing está en la página <a class="text-link" href="modelo.html">Modelo</a>.</p>
+
+      <h2>2. Requisitos funcionales</h2>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Código</th><th>Requisito</th><th>Dónde está</th></tr></thead><tbody>
+        <tr><td data-label="Código">RF-01</td><td data-label="Requisito">Registro de usuarios con validación</td><td data-label="Dónde">registro.html</td></tr>
+        <tr><td data-label="Código">RF-02</td><td data-label="Requisito">Inicio y cierre de sesión</td><td data-label="Dónde">login.html, menú superior</td></tr>
+        <tr><td data-label="Código">RF-03</td><td data-label="Requisito">Crear material</td><td data-label="Dónde">subir.html</td></tr>
+        <tr><td data-label="Código">RF-04</td><td data-label="Requisito">Consultar materiales y vista previa</td><td data-label="Dónde">biblioteca.html, panel.html</td></tr>
+        <tr><td data-label="Código">RF-05</td><td data-label="Requisito">Actualizar un material propio</td><td data-label="Dónde">subir.html?id=…</td></tr>
+        <tr><td data-label="Código">RF-06</td><td data-label="Requisito">Eliminar un material propio (con confirmación)</td><td data-label="Dónde">panel.html</td></tr>
+        <tr><td data-label="Código">RF-07</td><td data-label="Requisito">Búsqueda y filtros por materia, tipo y favoritos</td><td data-label="Dónde">biblioteca.html, panel.html</td></tr>
+        <tr><td data-label="Código">RF-08</td><td data-label="Requisito">Reportes y estadísticas, exportar CSV e imprimir</td><td data-label="Dónde">reportes.html</td></tr>
+      </tbody></table></div>
+      <p><strong>No funcionales:</strong> diseño adaptable a móviles, modo oscuro, accesibilidad básica (etiquetas, foco visible, textos alternativos) y funcionamiento sin servidor.</p>
+
+      <h2>3. Arquitectura</h2>
+      <p>Aplicación de front-end con HTML, CSS y JavaScript sin librerías. Los datos se guardan en <code>localStorage</code>. Archivos principales:</p>
+      <ul class="check-list">
+        <li><code>js/store.js</code>: capa de datos y seguridad (usuarios, sesión, CRUD de materiales).</li>
+        <li><code>js/app.js</code>: navegación, biblioteca (búsqueda, filtros, favoritos, vista previa) y modo oscuro.</li>
+        <li><code>js/pages.js</code>: lógica de registro, login, panel, formulario y reportes.</li>
+        <li><code>js/seed.js</code>: lista de los 30 recursos base para los reportes.</li>
+      </ul>
+
+      <h2>4. Modelo de datos</h2>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Entidad</th><th>Campos</th></tr></thead><tbody>
+        <tr><td data-label="Entidad">Usuario</td><td data-label="Campos">id, name, email, salt, hash, role (estudiante | admin), created</td></tr>
+        <tr><td data-label="Entidad">Material</td><td data-label="Campos">id, title, subject, type, description, content, tags, ownerId, author, created, updated, views</td></tr>
+      </tbody></table></div>
+      <p>Relación: un usuario puede tener muchos materiales (1:N mediante <code>ownerId</code>).</p>
+
+      <h2>5. Seguridad básica</h2>
+      <ul class="check-list">
+        <li>Contraseñas guardadas como hash PBKDF2-SHA256 con sal; nunca en texto plano.</li>
+        <li>Política de contraseña: 8+ caracteres con mayúscula, minúscula y número.</li>
+        <li>Bloqueo de 1 minuto tras 5 intentos fallidos de inicio de sesión.</li>
+        <li>Sesión con expiración por 30 minutos de inactividad.</li>
+        <li>Páginas protegidas (panel, subir, reportes) redirigen al login; los permisos por rol impiden editar o eliminar materiales ajenos.</li>
+        <li>Texto de usuarios escapado antes de mostrarse (prevención de XSS) y validación de entradas.</li>
+        <li>Redirección posterior al login limitada a páginas internas.</li>
+      </ul>
+      <p><strong>Limitación:</strong> al ser una versión sin servidor, la validación ocurre en el navegador. En producción las reglas deben repetirse en un backend con base de datos y HTTPS.</p>
+
+      <h2>6. Guía de uso y credenciales de prueba</h2>
+      <p>Administrador de prueba: <code>admin@bancodeapuntes.edu</code> / <code>Admin2026!</code> (puede ver y gestionar todos los materiales y usuarios). Los estudiantes se crean desde <a class="text-link" href="registro.html">Registro</a>.</p>
+
+      <h2>7. Plan de pruebas (lista de verificación)</h2>
+      <div class="table-wrap"><table class="data-table"><thead><tr><th>Prueba</th><th>Pasos</th><th>Resultado esperado</th></tr></thead><tbody>
+        <tr><td data-label="Prueba">Registro</td><td data-label="Pasos">Crear cuenta con datos válidos e inválidos</td><td data-label="Resultado">Muestra errores o entra al panel</td></tr>
+        <tr><td data-label="Prueba">Inicio de sesión</td><td data-label="Pasos">Credenciales correctas e incorrectas</td><td data-label="Resultado">Acceso o mensaje de error</td></tr>
+        <tr><td data-label="Prueba">CRUD</td><td data-label="Pasos">Crear, editar, consultar y eliminar un material</td><td data-label="Resultado">Cambios visibles en panel y biblioteca</td></tr>
+        <tr><td data-label="Prueba">Búsqueda y filtros</td><td data-label="Pasos">Buscar por palabra y combinar filtros</td><td data-label="Resultado">Lista y contador se actualizan</td></tr>
+        <tr><td data-label="Prueba">Reportes</td><td data-label="Pasos">Abrir Reportes y exportar CSV</td><td data-label="Resultado">Gráficas y archivo descargado</td></tr>
+        <tr><td data-label="Prueba">Móvil</td><td data-label="Pasos">Ver el sitio en 390 px de ancho</td><td data-label="Resultado">Menú desplegable y tablas en tarjetas</td></tr>
+        <tr><td data-label="Prueba">Seguridad</td><td data-label="Pasos">Abrir panel.html sin sesión; 5 intentos fallidos</td><td data-label="Resultado">Redirige al login; bloqueo temporal</td></tr>
+      </tbody></table></div>
+
+      <h2>8. Guion sugerido para la demostración</h2>
+      <ol>
+        <li>Presentar el problema y la propuesta de valor (1 min).</li>
+        <li>Registrar un usuario y mostrar la validación.</li>
+        <li>Crear, editar y eliminar un material desde el panel.</li>
+        <li>Buscar y filtrar en la biblioteca desde el celular.</li>
+        <li>Mostrar reportes y exportar CSV.</li>
+        <li>Explicar seguridad, limitaciones y siguiente paso (backend + base de datos).</li>
+      </ol>
+
+      <h2>9. Plan emprendedor (resumen)</h2>
+      <p>Propuesta de valor, público objetivo, competidores, marketing digital, ingresos y riesgos están desarrollados en <a class="text-link" href="modelo.html">Modelo</a>. Roles del equipo en <a class="text-link" href="equipo.html">Equipo</a>.</p>
+    </div></section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/seed.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+</body>
+</html>
